@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from meteostat import Point, Daily
 
 
@@ -9,3 +10,10 @@ def fetcher():
     data = Daily(location, start, end)
     data = data.fetch()
     return data
+
+
+def stationarity(alias):
+    first_diffs = alias.tavg.values[1:] - alias.tavg.values[:-1]
+    first_diffs = np.concatenate([first_diffs, [0]])
+    alias['FirstDifference'] = first_diffs
+    return alias

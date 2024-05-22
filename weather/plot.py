@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
-from data_cleaning import fetcher
+from data_cleaning import fetcher, stationarity
 
 df_weather = fetcher()
 
@@ -13,16 +13,28 @@ def basic_plot(alias, label):
     plt.show()
 
 
+df_weather2 = stationarity(df_weather)
+
+
+def day_temp_avg(alias):
+    plt.figure(figsize=(10, 4))
+    plt.plot(alias.FirstDifference)
+    plt.title('Average temp diff for each day (New York)', fontsize=20)
+    plt.ylabel('Temperature difference', fontsize=16)
+    plt.show()
+
+
 def acf_plot(alias):
-    plot_acf(alias.tavg, lags=100)
+    plot_acf(alias.FirstDifference, lags=100)
     plt.show()
 
 
 def pacf_plot(alias):
-    plot_pacf(alias.tavg, lags=50)
+    plot_pacf(alias.FirstDifference, lags=50)
     plt.show()
 
 
 basic_plot(df_weather, 'tavg')
-acf_plot(df_weather)
-pacf_plot(df_weather)
+day_temp_avg(df_weather2)
+acf_plot(df_weather2)
+pacf_plot(df_weather2)
