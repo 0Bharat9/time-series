@@ -29,8 +29,9 @@ def pacf_plot(alias):
     plt.show()
 
 
-production_plot(df_ice_cream)
-# based on decaying ACF, we are likely dealing with an auto regressive process
-acf_plot(df_ice_cream)
-# based on pacf, we should start with an auto regressive model with lags 1,2,3,10,13
-pacf_plot(df_ice_cream)
+if __name__ == "__main__":
+    production_plot(df_ice_cream)
+    # based on decaying ACF, we are likely dealing with an auto regressive process
+    acf_plot(df_ice_cream)
+    # based on pacf, we should start with an auto regressive model with lags 1,2,3,10,13
+    pacf_plot(df_ice_cream)

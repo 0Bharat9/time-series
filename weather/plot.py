@@ -34,7 +34,8 @@ def pacf_plot(alias):
     plt.show()
 
 
-basic_plot(df_weather, 'tavg')
-day_temp_avg(df_weather2)
-acf_plot(df_weather2)
-pacf_plot(df_weather2)
+if __name__ == '__main__':
+    basic_plot(df_weather, 'tavg')
+    day_temp_avg(df_weather2)
+    acf_plot(df_weather2)
+    pacf_plot(df_weather2)
