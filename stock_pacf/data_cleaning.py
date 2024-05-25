@@ -5,7 +5,7 @@ import numpy as np
 def cleaning():
     tickerSymbol = 'AAPL'
     stock_data = yf.download(tickerSymbol,
-                             start='2021-01-01', end='2023-01-01')
+                             start='2015-01-01', end='2022-01-01')
     tickerDf = stock_data[['Close']]
     return tickerDf
 

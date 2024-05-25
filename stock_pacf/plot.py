@@ -13,7 +13,7 @@ def stock_plot(alias):
     plt.plot(alias.Close)
     plt.title('Stock Price over Time (AAPL)', fontsize=20)
     plt.ylabel('Price', fontsize=16)
-    for year in range(2021, 2023):
+    for year in range(2015, 2023):
         plt.axvline(pd.to_datetime(str(year)+'-01-01'),
                     color='k', linestyle='--', alpha=0.2)
     plt.show()
@@ -28,7 +28,7 @@ def day_stock_plot(alias):
     plt.plot(alias.FirstDifference)
     plt.title('First Difference over Time (AAPL)', fontsize=20)
     plt.ylabel('Price Difference', fontsize=16)
-    for year in range(2021, 2023):
+    for year in range(2015, 2023):
         plt.axvline(pd.to_datetime(str(year)+'-01-01'),
                     color='k', linestyle='--', alpha=0.2)
     plt.show()

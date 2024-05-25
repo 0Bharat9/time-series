@@ -14,6 +14,8 @@ pacf_plot(df_ice_cream)
 # based on pacf we can start with an ar(1),ar(2) or ar(3) models
 train_part = datetime(2018, 12, 1)
 test_part = datetime(2019, 12, 1)
+print(train_part)
+print(test_part)
 
 train_data = df_ice_cream[:train_part]
 test_data = df_ice_cream[train_part + timedelta(days=1):test_part]
@@ -29,9 +31,10 @@ print(model_fit.summary())
 
 pred_start_date = test_data.index[0]
 pred_end_date = test_data.index[-1]
-
+print(pred_end_date)
+print(pred_start_date)
 preds = model_fit.predict(start=pred_start_date, end=pred_end_date)
-
+print(preds)
 error = test_data.squeeze() - preds.squeeze()
 
 print(error)
