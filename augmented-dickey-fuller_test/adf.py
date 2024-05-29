@@ -60,4 +60,3 @@ plt.title('non stationarity ar(2) process', fontsize=16)
 plt.show()
 
 adf_test(testar2_process)
-

@@ -19,7 +19,7 @@ production_plot(df_ice_cream, 'production', 2010, 2021)
 acf_plot(df_ice_cream)
 pacf_plot(df_ice_cream)
 
-model = ARIMA(train_data, order=(0, 0, 15))
+model = ARIMA(train_data, order=(0, 0, 21))
 start = time()
 model_fit = model.fit()
 end = time()
@@ -36,4 +36,3 @@ error = test_data.squeeze() - preds.squeeze()
 
 plot_error(error, 2017, 2021)
 comparison_plot(test_data, preds, 2017, 2021)
-

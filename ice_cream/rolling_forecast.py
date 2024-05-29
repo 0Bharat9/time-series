@@ -38,7 +38,7 @@ comparison_plot(test_data, predictions_rolling, 2017, 2020)
 print(np.sqrt(np.mean(error_rolling**2)))
 
 
-#rolling forecast for moving average model
+# rolling forecast for moving average model
 predictions_rolling = pd.Series(index=test_data.index)
 
 for end_date in test_data.index:
