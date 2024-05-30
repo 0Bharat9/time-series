@@ -5,9 +5,9 @@ import numpy as np
 def cleaning():
     tickerSymbol = 'AAPL'
     stock_data = yf.download(tickerSymbol,
-                             start='2015-01-01', end='2022-01-01')
-    tickerDf = stock_data[['Close']]
-    return tickerDf
+                             start='2021-01-01', end='2021-04-01')
+    returns = stock_data.pct_change().dropna()
+    return stock_data, returns
 
 
 def stationarity(alias):

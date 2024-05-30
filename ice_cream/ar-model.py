@@ -22,6 +22,7 @@ test_part = datetime(2019, 12, 1)
 train_data = df_ice_cream[:train_part]
 test_data = df_ice_cream[train_part + timedelta(days=1):test_part]
 
+print(train_data)
 model = ARIMA(train_data, order=(15, 0, 0))
 
 start = time()
@@ -39,4 +40,3 @@ error = test_data.squeeze() - preds.squeeze()
 plot_error(error, 2017, 2021)
 comparison_plot(test_data, preds, 2017, 2020)
 print(np.sqrt(np.mean(error**2)))
-
