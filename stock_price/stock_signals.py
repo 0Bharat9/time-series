@@ -23,7 +23,7 @@ def run_simulation(returns, prices, amount, order, thresh, verbose=False, plot=T
     prices.index = prices.index.tz_localize(None)
 
     # Going through dates
-    for date, r in tqdm(returns.iloc[14:].items(), total=len(returns.iloc[14:])):
+    for date, r in tqdm(returns.iloc[25:].items(), total=len(returns.iloc[25:])):
         # date is already the index, no need to convert again
         date = pd.to_datetime(date).tz_localize(
             None)  # Ensure the date is timezone-naive
@@ -95,10 +95,10 @@ def run_simulation(returns, prices, amount, order, thresh, verbose=False, plot=T
     return amount
 
 
-tickerSymbol = 'MCFT'
+tickerSymbol = 'NVDA'
 data = yf.Ticker(tickerSymbol)
 
-prices = data.history(start='2020-07-04', end='2020-09-10').Close
+prices = data.history(start='2020-07-04', end='2020-10-10').Close
 returns = prices.pct_change().dropna()
 acf_plot(returns)
 pacf_plot(returns)
@@ -121,13 +121,13 @@ plt.show()
 run_simulation(returns, prices, 100, 'last', None, verbose=False)
 
 # AR(1) model
-for thresh in [0, 0.001, 0.005]:
+for thresh in [0, 0.001, 0.01]:
     run_simulation(returns, prices, 200, (1, 0, 0), thresh, verbose=True)
 
 # AR(5) model
-for thresh in [0, 0.001, 0.005]:
-    run_simulation(returns, prices, 200, (1, 0, 0), thresh, verbose=True)
+for thresh in [0, 0.001, 0.01]:
+    run_simulation(returns, prices, 200, (5, 0, 0), thresh, verbose=True)
 
-# ARMA(5,5) model
-for thresh in [0, 0.001, 0.005]:
-    run_simulation(returns, prices, 200, (1, 0, 0), thresh, verbose=True)
+# ARMA(1,1) model
+for thresh in [0, 0.001, 0.01]:
+    run_simulation(returns, prices, 200, (1, 0, 1), thresh, verbose=True)
