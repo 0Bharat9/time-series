@@ -7,6 +7,7 @@ from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.stattools import acf, pacf
 from data_cleaning import cleaner
 from plot import production_plot, plot_error, comparison_plot
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 df_ice_cream = cleaner()
 
@@ -30,6 +31,26 @@ test_data = firstDifference[train_end+timedelta(days=1):test_end]
 
 
 model = ARIMA(train_data, order=(13, 0, 21))
+
+start = time()
+model_fit = model.fit()
+end = time()
+print("time taken to fit model:", end-start)
+print(model_fit.summary())
+
+start_date = test_data.index[0]
+end_date = test_data.index[-1]
+
+preds = model_fit.predict(start=start_date, end=end_date)
+
+error = test_data.squeeze() - preds.squeeze()
+
+plot_error(error, 2017, 2021)
+comparison_plot(test_data, preds, 2017, 2021)
+
+print(np.sqrt(np.mean(error**2)))
+
+model = SARIMAX(train_data, order=(0, 1, 0), seasonal_order=(1, 0, 1, 12))
 
 start = time()
 model_fit = model.fit()
