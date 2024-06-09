@@ -70,7 +70,7 @@ for lag in range(1, 14):
     print(pearsonr(ac_series, lagged_heater_series))
     print('-----------------------------')
 
-data = data[['heater','ac']]
+data = data[['heater', 'ac']]
 
 model = VAR(data)
 
