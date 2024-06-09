@@ -6,6 +6,7 @@ data = pd.read_csv('./ice_cream_vs_heater.csv',
                    parse_dates=[0], index_col=0, date_format='%Y-%m')
 
 data = data.asfreq(pd.infer_freq(data.index))
+data = data.dropna()
 
 heater_series = data.heater
 

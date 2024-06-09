@@ -6,7 +6,7 @@ def cleaner():
                        parse_dates=[0], index_col=0, date_format='%Y-%m')
     data = data.asfreq(pd.infer_freq(data.index))
 
-    print(data.columns)
+    print(data)
     avgs, devs = data.mean(), data.std()
 
     for col in data.columns:
